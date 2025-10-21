@@ -1,0 +1,35 @@
+
+---
+- name: configuring tomcat
+  hosts: all
+  tasks:
+    - name: installing of tomcat10
+      apt:
+        name: tomcat10
+        state: present
+        update_cache: yes
+    - name: installation of tomcat10-admin
+      apt:
+        name: tomcat10-admin
+        state: present
+        update_cache: yes
+    - name: copy customized tomcat-users.xml file
+      copy:
+        src: tomcat-users.xml
+        dest: /tmp/tomcat10
+    - name: changing port name
+      replace:
+        regexp: 8080
+        replace: 9090
+        path: /etc/tomcat10/server.xml
+    - name: restarting
+      service:
+       name: tomcat10
+       state: restarted
+    - name: pause 
+      pause:
+        seconds: 5
+    - name: checking if it is running on the new server or not          
+      uri:
+        url: http://172.31.14.47:9090
+        status_code: 200

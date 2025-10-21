@@ -1,0 +1,15 @@
+
+---
+- name: implementing playbooks variables
+  hosts: all
+  vars: 
+      a: tomcat10
+      b: present
+      c: yes
+  tasks:
+    - name: install s/w
+      apt: 
+         name: "{{a}}"
+         state: "{{b}}"
+         update_cache: "{{c}}"
+...

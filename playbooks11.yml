@@ -1,0 +1,13 @@
+
+---
+ - name: installation of a software
+   hosts: all
+   tasks:
+     - name: installing git
+       apt:
+         name: git
+         state: present
+         update_cache: yes
+       tags: tree_installation
+         
+...

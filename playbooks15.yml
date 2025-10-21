@@ -1,0 +1,9 @@
+---
+- name: delete all executable file 
+  hosts: all
+  tasks: 
+    - name : capture file info 
+      stat:
+        path: /home/ubuntu/file1
+      register: a
+... 

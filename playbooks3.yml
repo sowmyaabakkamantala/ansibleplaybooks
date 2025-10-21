@@ -1,0 +1,10 @@
+
+---
+- name: clone the remote repo on all the servers using git
+  hosts: all
+  tasks:
+    - name: using git module to clone
+      git: 
+         url: https://github.com/sowmyaabakkamantala/STATIC-WEBSITE-FOR-PORTFOLIO.git
+         dest: /home/mygit
+...
